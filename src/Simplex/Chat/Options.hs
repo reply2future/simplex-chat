@@ -35,6 +35,7 @@ import Simplex.Messaging.Parsers (parseAll)
 import Simplex.Messaging.Protocol (ProtoServerWithAuth, ProtocolTypeI, SMPServerWithAuth, XFTPServerWithAuth)
 import Simplex.Messaging.Transport.Client (SocksProxyWithAuth (..), SocksAuth (..), defaultSocksProxyWithAuth)
 import Simplex.Chat.Options.DB
+import Simplex.Chat.Types (ContactName)
 
 data ChatOpts = ChatOpts
   { coreOptions :: CoreChatOpts,
@@ -54,6 +55,7 @@ data ChatOpts = ChatOpts
 
 data CoreChatOpts = CoreChatOpts
   { dbOptions :: ChatDbOpts,
+    displayName :: Maybe ContactName,
     smpServers :: [SMPServerWithAuth],
     xftpServers :: [XFTPServerWithAuth],
     simpleNetCfg :: SimpleNetCfg,
@@ -82,6 +84,13 @@ agentLogLevel = \case
 coreChatOptsP :: FilePath -> FilePath -> Parser CoreChatOpts
 coreChatOptsP appDir defaultDbName = do
   dbOptions <- chatDbOptsP appDir defaultDbName
+  displayName <-
+    optional $
+      strOption
+        ( long "display-name"
+            <> metavar "DISPLAY_NAME"
+            <> help "Display name will be sent to your contacts when you connect and only stored on your device and you can change it later."
+        )
   smpServers <-
     option
       parseProtocolServers
@@ -233,6 +242,7 @@ coreChatOptsP appDir defaultDbName = do
   pure
     CoreChatOpts
       { dbOptions,
+        displayName,
         smpServers,
         xftpServers,
         simpleNetCfg =

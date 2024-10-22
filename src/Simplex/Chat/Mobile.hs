@@ -195,6 +195,7 @@ mobileChatOpts dbOptions =
     { coreOptions =
         CoreChatOpts
           { dbOptions,
+            displayName = Nothing,
             smpServers = [],
             xftpServers = [],
             simpleNetCfg = defaultSimpleNetCfg,
