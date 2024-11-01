@@ -158,6 +158,7 @@ mkChatOpts :: DirectoryOpts -> ChatOpts
 mkChatOpts DirectoryOpts {coreOptions} =
   ChatOpts
     { coreOptions,
+      displayName = Nothing,
       chatCmd = "",
       chatCmdDelay = 3,
       chatCmdLog = CCLNone,

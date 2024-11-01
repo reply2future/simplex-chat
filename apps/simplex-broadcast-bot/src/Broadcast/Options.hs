@@ -75,6 +75,7 @@ mkChatOpts :: BroadcastBotOpts -> ChatOpts
 mkChatOpts BroadcastBotOpts {coreOptions} =
   ChatOpts
     { coreOptions,
+      displayName = Nothing,
       chatCmd = "",
       chatCmdDelay = 3,
       chatCmdLog = CCLNone,

@@ -34,7 +34,7 @@ import Text.Read (readMaybe)
 import UnliftIO.Async
 
 simplexChatCore :: ChatConfig -> ChatOpts -> (User -> ChatController -> IO ()) -> IO ()
-simplexChatCore cfg@ChatConfig {confirmMigrations, testView} opts@ChatOpts {coreOptions = CoreChatOpts {dbOptions, logAgent, yesToUpMigrations, displayName}} chat =
+simplexChatCore cfg@ChatConfig {confirmMigrations, testView} opts@ChatOpts {coreOptions = CoreChatOpts {dbOptions, logAgent, yesToUpMigrations}, displayName} chat =
   case logAgent of
     Just level -> do
       setLogLevel level

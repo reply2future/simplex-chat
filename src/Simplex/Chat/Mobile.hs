@@ -195,7 +195,6 @@ mobileChatOpts dbOptions =
     { coreOptions =
         CoreChatOpts
           { dbOptions,
-            displayName = Nothing,
             smpServers = [],
             xftpServers = [],
             simpleNetCfg = defaultSimpleNetCfg,
@@ -209,6 +208,7 @@ mobileChatOpts dbOptions =
             highlyAvailable = False,
             yesToUpMigrations = False
           },
+      displayName = Nothing,
       chatCmd = "",
       chatCmdDelay = 3,
       chatCmdLog = CCLNone,

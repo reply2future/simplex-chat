@@ -94,6 +94,7 @@ testOpts :: ChatOpts
 testOpts =
   ChatOpts
     { coreOptions = testCoreOpts,
+      displayName = Nothing,
       chatCmd = "",
       chatCmdDelay = 3,
       chatCmdLog = CCLNone,
